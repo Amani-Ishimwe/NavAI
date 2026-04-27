@@ -1,0 +1,91 @@
+
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Compass, Mail, Lock, ArrowRight, ShieldCheck, Sparkles, User, UserPlus } from 'lucide-react';
+import { useStore } from '../store';
+
+const SignupPage = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const login = useStore(state => state.login);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        login(email, 'user', 'explorer');
+        navigate('/workspace');
+    };
+
+    return (
+        <div className="min-h-[90vh] flex items-center justify-center px-6 py-12">
+            <div className="max-w-md w-full">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white p-10 md:p-12 rounded-[4rem] border border-gray-100 custom-shadow shadow-sm text-center relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#F28C28]/5 rounded-full blur-2xl" />
+                    <div className="mb-10 inline-flex flex-col items-center">
+                        <div className="bg-[#F28C28] p-4 rounded-2xl mb-4 shadow-xl">
+                            <UserPlus className="text-white w-8 h-8" />
+                        </div>
+                        <h1 className="text-3xl font-black text-gray-900 tracking-tighter leading-none mb-2">Register Node</h1>
+                        <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">New Discovery Identity</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-6 text-left">
+                        <div className="space-y-2">
+                            <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Communication Hub</label>
+                            <div className="relative">
+                                <input
+                                    required
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="professional@email.com"
+                                    className="w-full bg-gray-50 border-none rounded-xl py-5 px-12 font-bold text-gray-900 outline-none focus:ring-4 focus:ring-[#F28C28]/10 transition-all placeholder:text-gray-300"
+                                />
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">New Access Passnode</label>
+                            <div className="relative">
+                                <input
+                                    required
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="••••••••••••"
+                                    className="w-full bg-gray-50 border-none rounded-xl py-5 px-12 font-bold text-gray-900 outline-none focus:ring-4 focus:ring-[#F28C28]/10 transition-all placeholder:text-gray-300"
+                                />
+                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl mb-2">
+                            <ShieldCheck className="w-5 h-5 text-green-500 mt-0.5" />
+                            <p className="text-[10px] font-medium text-gray-400 leading-relaxed uppercase tracking-widest">
+                                By registering, you agree to our <span className="text-gray-900 font-bold">Strategic Terms</span> & <span className="text-gray-900 font-bold">Privacy Protocol</span>.
+                            </p>
+                        </div>
+
+                        <button className="w-full bg-gray-900 text-white py-5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#F28C28] transition-all shadow-xl shadow-gray-200 group">
+                            Confirm & Sync <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    </form>
+
+                    <div className="mt-10 pt-8 border-t border-gray-50">
+                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                            Existing node identity? <Link to="/login" className="text-[#F28C28] hover:underline">Re-enter Session</Link>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </div>
+    );
+};
+
+export default SignupPage;

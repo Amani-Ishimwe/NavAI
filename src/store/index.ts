@@ -1,19 +1,24 @@
 
 import { create } from 'zustand';
-import { AIAgent, User, SavedTool, ToolStatus, Review } from './types';
-import { MOCK_AGENTS, MOCK_REVIEWS } from './constants';
+import { AIAgent, User, SavedTool, ToolStatus, Review } from '../types';
+import { MOCK_AGENTS, MOCK_REVIEWS } from '../constants';
 
 interface AppState {
   user: User | null;
   savedTools: SavedTool[];
   agents: AIAgent[];
   reviews: Review[];
-  login: (email: string, role: 'user' | 'admin') => void;
+  login: (email: string, role: 'user' | 'admin', membership?: 'explorer' | 'pioneer' | 'navigator') => void;
   logout: () => void;
   saveTool: (agentId: string) => void;
   removeTool: (agentId: string) => void;
   updateToolStatus: (agentId: string, status: ToolStatus) => void;
+  updateMembership: (membership: 'explorer' | 'pioneer' | 'navigator') => void;
   addReview: (review: Omit<Review, 'id' | 'date'>) => void;
+  // Admin Actions
+  addAgent: (agent: Omit<AIAgent, 'id'>) => void;
+  updateAgent: (id: string, updates: Partial<AIAgent>) => void;
+  deleteAgent: (id: string) => void;
 }
 
 const STORAGE_KEY = 'navai_storage';
@@ -28,14 +33,9 @@ export const useStore = create<AppState>((set, get) => {
     reviews: MOCK_REVIEWS
   };
 
-  // If rehydrated agents are missing (e.g. from old version), use MOCK_AGENTS
-  if (!initialState.agents || initialState.agents.length === 0) {
-    initialState.agents = MOCK_AGENTS;
-  }
-  // If rehydrated reviews are missing, use MOCK_REVIEWS
-  if (!initialState.reviews || initialState.reviews.length === 0) {
-    initialState.reviews = MOCK_REVIEWS;
-  }
+  // Ensure rehydrated data is valid
+  if (!initialState.agents || initialState.agents.length === 0) initialState.agents = MOCK_AGENTS;
+  if (!initialState.reviews || initialState.reviews.length === 0) initialState.reviews = MOCK_REVIEWS;
 
   const persist = (newState: Partial<AppState>) => {
     const current = { ...get(), ...newState };
@@ -50,13 +50,19 @@ export const useStore = create<AppState>((set, get) => {
 
   return {
     ...initialState,
-    login: (email, role) => persist({ user: { email, role } }),
+    login: (email, role, membership = 'explorer') => persist({ user: { email, role, membership } }),
     logout: () => persist({ user: null, savedTools: [] }),
+    updateMembership: (membership) => {
+      const { user } = get();
+      if (user) {
+        persist({ user: { ...user, membership } });
+      }
+    },
     saveTool: (agentId) => {
       const { savedTools } = get();
       if (!savedTools.find(t => t.agentId === agentId)) {
         persist({
-          savedTools: [...savedTools, { agentId, status: 'Trying', addedAt: new Date().toISOString() }]
+          savedTools: [...savedTools, { agentId, status: 'Testing', addedAt: new Date().toISOString() }]
         });
       }
     },
@@ -81,7 +87,6 @@ export const useStore = create<AppState>((set, get) => {
       const updatedReviews = [newReview, ...get().reviews];
       persist({ reviews: updatedReviews });
 
-      // Also update agent stats
       const agent = get().agents.find(a => a.id === reviewData.agentId);
       if (agent) {
         const agentReviews = updatedReviews.filter(r => r.agentId === reviewData.agentId);
@@ -93,6 +98,24 @@ export const useStore = create<AppState>((set, get) => {
         );
         persist({ agents: updatedAgents });
       }
+    },
+    addAgent: (agentData) => {
+      const newAgent: AIAgent = {
+        ...agentData,
+        id: `agent-${Date.now()}`,
+      };
+      persist({ agents: [newAgent, ...get().agents] });
+    },
+    updateAgent: (id, updates) => {
+      persist({
+        agents: get().agents.map(a => a.id === id ? { ...a, ...updates } : a)
+      });
+    },
+    deleteAgent: (id) => {
+      persist({
+        agents: get().agents.filter(a => a.id !== id),
+        savedTools: get().savedTools.filter(t => t.agentId !== id)
+      });
     }
   };
 });

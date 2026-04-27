@@ -1,6 +1,6 @@
 
 export type PricingType = "Free" | "Freemium" | "Paid";
-export type ToolStatus = "Trying" | "Using" | "Considering Upgrade";
+export type ToolStatus = "Testing" | "In Daily Use" | "Strategic Priority";
 
 export interface AIAgent {
   id: string;
@@ -35,6 +35,7 @@ export interface SavedTool {
 export interface User {
   email: string;
   role: 'user' | 'admin';
+  membership: 'explorer' | 'pioneer' | 'navigator';
   fieldPreference?: string;
 }
 
