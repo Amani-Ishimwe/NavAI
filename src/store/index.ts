@@ -21,7 +21,7 @@ interface AppState {
   deleteAgent: (id: string) => void;
 }
 
-const STORAGE_KEY = 'navai_storage';
+const STORAGE_KEY = 'stream_storage';
 
 export const useStore = create<AppState>((set, get) => {
   // Try to rehydrate from localStorage

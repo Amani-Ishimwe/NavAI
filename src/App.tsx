@@ -40,7 +40,7 @@ const Navbar = () => {
           <div className="bg-gray-900 p-2 rounded-xl group-hover:bg-[#F28C28] transition-all duration-500">
             <Compass className="text-white w-5 h-5" />
           </div>
-          <span className="text-xl font-black text-gray-900 tracking-tighter">nav<span className="text-[#F28C28]">AI</span></span>
+          <span className="text-xl font-black text-gray-900 tracking-tighter">stream</span>
         </Link>
 
         {/* Desktop Links */}
@@ -198,7 +198,7 @@ const App: React.FC = () => {
                 <div className="bg-gray-900 p-2 rounded-xl">
                   <Compass className="text-white w-5 h-5" />
                 </div>
-                <span className="text-xl font-black text-gray-900 tracking-tighter">nav<span className="text-[#F28C28]">AI</span></span>
+                <span className="text-xl font-black text-gray-900 tracking-tighter">stream</span>
               </Link>
               <p className="text-gray-400 max-w-sm font-medium leading-relaxed text-sm">
                 Empowering professionals to navigate the AI revolution. We simplify complex technology into friendly assistants that accelerate your career.
@@ -222,7 +222,7 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-50 text-center text-gray-300 text-[9px] font-black uppercase tracking-widest">
-            © {new Date().getFullYear()} navAI. Redefining the professional future.
+            © {new Date().getFullYear()} stream. Redefining the professional future.
           </div>
         </footer>
       </div>

@@ -211,8 +211,8 @@ const LandingPage = () => {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <div className="text-[10px] font-black text-[#F28C28] uppercase tracking-[0.4em] mb-4">The NavAI Advantage</div>
-            <h2 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter mb-6 leading-none">Why Experts <br /> Choose NavAI.</h2>
+            <div className="text-[10px] font-black text-[#F28C28] uppercase tracking-[0.4em] mb-4">The Stream Advantage</div>
+            <h2 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter mb-6 leading-none">Why Experts <br /> Choose Stream.</h2>
             <p className="text-gray-400 font-medium max-w-2xl mx-auto text-base leading-relaxed">Integrated intelligence is the new standard. We provide the clarity you need to stay ahead.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-16">

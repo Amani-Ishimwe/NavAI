@@ -1,11 +1,11 @@
-# 🧭 navAI — Your AI Career Navigator
+# 🌊 stream — Your AI Career Navigator
 
 [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-**navAI** is a professional discovery platform designed to empower professionals in the AI era. We simplify the complex landscape of artificial intelligence by providing a curated library of specialized AI assistants tailored to specific career paths and professional skills.
+**stream** is a professional discovery platform designed to empower professionals in the AI era. We simplify the complex landscape of artificial intelligence by providing a curated library of specialized AI assistants tailored to specific career paths and professional skills.
 
 ---
 
@@ -42,8 +42,8 @@ Follow these steps to set up the project locally:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/navai.git
-   cd navai
+   git clone https://github.com/Amani-Ishimwe/stream.git
+   cd stream
    ```
 2. **Install dependencies:**
 
@@ -92,7 +92,7 @@ We love contributions! Whether you're fixing a bug, adding a feature, or improvi
 
 ### Reporting Issues
 
-If you find a bug or have a suggestion, please open an [Issue](https://github.com/your-username/navai/issues).
+If you find a bug or have a suggestion, please open an [Issue](https://github.com/Amani-Ishimwe/NavAI/issues).
 
 ---
 

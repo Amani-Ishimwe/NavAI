@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'admin@navai.com') {
+    if (email === 'admin@stream.com') {
       login(email, 'admin', 'navigator');
     } else {
       login(email, 'user', 'explorer');
@@ -79,7 +79,7 @@ const LoginPage = () => {
               No active session? <Link to="/signup" className="text-[#F28C28] hover:underline">Register New Node</Link>
             </div>
             <div className="text-[9px] text-gray-300 font-bold uppercase tracking-widest leading-relaxed">
-              Tip: Use admin@navai.com for operations hub access.
+              Tip: Use admin@stream.com for operations hub access.
             </div>
           </div>
         </motion.div>
